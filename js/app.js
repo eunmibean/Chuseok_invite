@@ -19,7 +19,7 @@
   const params = new URLSearchParams(window.location.search);
   const invitedName = params.get("to") ? decodeURIComponent(params.get("to")) : "";
 
-  const TEST_SKIP_GAME = false;
+  const TEST_SKIP_GAME = true;
 
   if (invitedName) {
     document.getElementById("greeting").innerHTML =
