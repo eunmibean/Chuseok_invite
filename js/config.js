@@ -16,11 +16,11 @@ const CONFIG = {
   event: {
     title: "밴쿠버에서 추석 보내기",
     hostName: "은미&현동",
-    dateLabel: "2026년 9월 26일 (토) 오후 5시",
+    dateLabel: "2026년 9월 26일 (토) 오후 1시",
     // Google Calendar 링크 계산용 (UTC 기준, YYYYMMDDTHHMMSSZ 포맷)
     // 아래 startUTC/endUTC 를 실제 일정에 맞게 바꿔주세요.
-    startUTC: "20260927T000000Z", // 예: 밴쿠버 9/26 17:00 (UTC-7) -> UTC 9/27 00:00
-    endUTC: "20260927T030000Z",   // 3시간짜리 행사 예시
+    startUTC: "20260926T200000Z", // 예: 밴쿠버 9/26 17:00 (UTC-7) -> UTC 9/27 00:00
+    endUTC: "20260926T023000Z",   // 3시간짜리 행사 예시
     location: "950 Drake St, Vancouver, BC",
     description:
       "추석을 맞아 저희집에 초대합니다! 한가위 함께 보내요 🍚🥮",
