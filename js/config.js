@@ -20,7 +20,7 @@ const CONFIG = {
     // Google Calendar 링크 계산용 (UTC 기준, YYYYMMDDTHHMMSSZ 포맷)
     // 아래 startUTC/endUTC 를 실제 일정에 맞게 바꿔주세요.
     startUTC: "20260926T200000Z", // 예: 밴쿠버 9/26 17:00 (UTC-7) -> UTC 9/27 00:00
-    endUTC: "20260926T023000Z",   // 3시간짜리 행사 예시
+    endUTC: "20260926T230000Z",   // 3시간짜리 행사 예시
     location: "950 Drake St, Vancouver, BC",
     description:
       "추석을 맞아 저희집에 초대합니다! 한가위 함께 보내요 🍚🥮",
