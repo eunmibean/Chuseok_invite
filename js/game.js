@@ -271,7 +271,6 @@ const Game = (() => {
 
   function spawnItem() {
     const needed = sequence[progress];
-    console.log("needed: ", needed);
     // 다음에 필요한 재료가 나오도록 확률을 높여 주고,
     // 화면상의 이미지도 같은 ingredient id로 고정한다.
     const ing = Math.random() < 0.55 ? needed : randomIngredient(needed && needed.id);
@@ -293,7 +292,7 @@ const Game = (() => {
       ing,
       x,
       y: -20,
-      r: 20,
+      r: 50,
       width: 28,
       height: 118,
       color: ing.color || randomIngredientColor(),
@@ -328,7 +327,21 @@ const Game = (() => {
       const skewerTop = skewerY - skewerHeight / 2;
       const skewerBottom = skewerY + skewerHeight / 2;
 
-      const overlaps = itemRight >= skewerLeft && itemLeft <= skewerRight && itemBottom >= skewerTop && itemTop <= skewerBottom;
+      // circle (it.x, it.y, it.r) vs rectangle (skewer) collision
+      const closestX = Math.max(skewerLeft, Math.min(it.x, skewerRight));
+      const closestY = Math.max(skewerTop, Math.min(it.y, skewerBottom));
+      const dx = it.x - closestX;
+      const dy = it.y - closestY;
+      const radius = it.r || Math.max(it.width, it.height) / 2;
+      
+      const overlaps = dx * dx + dy * dy <= radius * radius;
+      if(overlaps) {
+        console.log("overlaps: ", overlaps);
+        console.log("dx, dy, radius: ", dx, dy, radius);
+      }
+      
+
+      // const overlaps = itemRight >= skewerLeft && itemLeft <= skewerRight && itemBottom >= skewerTop && itemTop <= skewerBottom;
 
       if (overlaps) {
         it.caught = true;
@@ -357,14 +370,10 @@ const Game = (() => {
       }
 
       if (it.y - it.r > height) {
-        const needed = sequence[progress];
-        if (needed && it.ing.id === needed.id) {
-          items.splice(i, 1);
-          loseHeart();
-          if (hearts <= 0) return;
-        } else {
-          items.splice(i, 1);
-        }
+        // Item fell off-screen — do NOT penalize the player here.
+        // Only catching a wrong ingredient should reduce hearts.
+        items.splice(i, 1);
+        continue;
       }
     }
   }
