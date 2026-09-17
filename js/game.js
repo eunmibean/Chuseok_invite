@@ -192,8 +192,18 @@ const Game = (() => {
     levelImage.style.display = "block";
     levelImage.style.borderRadius = "6px";
     levelImage.style.userSelect = "none";
+    // force rotation across browsers (mobile UA may handle image orientation differently)
     levelImage.style.transform = "rotate(-90deg)";
+    levelImage.style.webkitTransform = "rotate(-90deg)";
+    levelImage.style.msTransform = "rotate(-90deg)";
     levelImage.style.transformOrigin = "center center";
+    levelImage.style.willChange = "transform";
+    // prevent UA from auto-rotating based on EXIF on some mobile browsers
+    try {
+      levelImage.style.imageOrientation = "none";
+    } catch (e) {
+      /* ignore */
+    }
 
     box.appendChild(levelImage);
   }
